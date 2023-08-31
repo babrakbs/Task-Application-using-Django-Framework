@@ -1,0 +1,177 @@
+{#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+{#      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+
+<style>
+
+    .body {
+        background-color: #638CB8;
+    }
+
+    h1 {
+        font-family: Arial, serif;
+
+
+    }
+    .head{
+                font-family: Arial, serif;
+        font-weight: bold;
+
+    }
+
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .add_task {
+        border-radius: 12px;
+        background-color: cornflowerblue;
+        height: 50px;
+        width: 100px;
+        color: black;
+        border: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .delete_task {
+        border-radius: 12px;
+        background-color: red;
+        height: 50px;
+        width: 100px;
+        color: black;
+        border: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .update_task {
+        border-radius: 12px;
+        background-color: yellow;
+        height: 50px;
+        width: 100px;
+        color: black;
+        border: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        resize: none;
+        font-family: Arial, serif;
+        font-weight: normal;
+
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        font-family: Arial, serif;
+    }
+
+    {#input::placeholder {#}
+    {#    color: #d3d3d3;#}
+
+
+    {#submit {#}
+    {#    background-color: #6BA3E8;#}
+    {#}#}
+
+    .center-column {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+    }
+
+    {#.item-row {#}
+    {#    background-color: #906abd;#}
+    {#    margin: 10px;#}
+    {#    padding: 20px;#}
+    {#    border-radius: 3px;#}
+    {#    color: #fff;#}
+    {#    font-size: 16px;#}
+    {#    box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);#}
+
+
+    .btn_danger {
+        background-color: #ffae19;
+        border-color: #e59400;
+    }
+
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Application</title>
+</head>
+<body class="body">
+<div class="center-column">
+
+    <form method="post">
+        {% csrf_token %}
+        <h1>Task Application:</h1>
+
+        <label class="head">Add Title</label>
+        <input required type="text" placeholder="Enter Title" name="title">
+
+        <label class="head" >Add Description</label>
+        <textarea required name="description" placeholder="Enter description of task"></textarea>
+        <br>
+
+        <br>
+
+
+        <button class="add_task" type="submit">Add Task</button>
+        <div class="todo-list">
+            {% for item in tasks %}
+                <div class="item-row">
+                    {% if item.complete == True %}
+                        <strike><h1> {{ forloop.counter }}. {{ item.title }} </h1></strike>
+                        <strike><p>{{ item.description }}</p></strike>
+                        <button class="delete_task"><a href="/delete-task/{{ item.id }}"> Delete Task</a></button>
+
+                    {% else %}
+                        <h1> {{ forloop.counter }}. {{ item.title }} </h1>
+                        <p>{{ item.description }}</p>
+                        <button class="update_task"><a href="/update-task/{{ item.id }}"> Update Task</a></button>
+                        <br>
+                        <br>
+                        <button class="delete_task"><a href="/delete-task/{{ item.id }}"> Delete Task</a></button>
+                        {#    <button> <a href="{% url '/update-task/' item.id %}"> Update</a></button>#}
+
+                        {#<h1>Babrak</h1>#}
+                        </div>
+                    {% endif %}
+            {% endfor %}
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>

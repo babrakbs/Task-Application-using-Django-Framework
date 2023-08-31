@@ -1,0 +1,178 @@
+<style>
+
+    .body {
+        background-color: #638CB8;
+    }
+
+    .checkbox-container {
+        {#display: flex;#}
+        align-items: center; /* Align vertically */
+    }
+
+    /* Style the checkbox */
+    .custom-checkbox {
+        margin-right: 1px; /* Space between checkbox and label */
+    }
+
+    h1 {
+        font-family: Arial, serif;
+
+
+    }
+
+    .head {
+        font-family: Arial, serif;
+        font-weight: bold;
+
+    }
+
+    .checkbox {
+        align-items: center; /* Align vertically */
+
+
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .add_task {
+        border-radius: 12px;
+        background-color: cornflowerblue;
+        height: 50px;
+        width: 100px;
+        color: black;
+        border: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .delete_task {
+        border-radius: 12px;
+        background-color: red;
+        height: 50px;
+        width: 100px;
+        color: black;
+        border: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .label {
+        height: 50px;
+        width: 100px;
+        color: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        resize: none;
+        font-family: Arial, serif;
+        font-weight: normal;
+
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        font-family: Arial, serif;
+    }
+
+    {#input::placeholder {#}
+    {#    color: #d3d3d3;#}
+
+
+    {#submit {#}
+    {#    background-color: #6BA3E8;#}
+
+
+    .center-column {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+    }
+
+    {#.item-row {#}
+    {#    background-color: #906abd;#}
+    {#    margin: 10px;#}
+    {#    padding: 20px;#}
+    {#    border-radius: 3px;#}
+    {#    color: #fff;#}
+    {#    font-size: 16px;#}
+    {#    box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);#}
+
+
+    .btn_danger {
+        background-color: #ffae19;
+        border-color: #e59400;
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Application</title>
+</head>
+<body class="body">
+<div class="center-column">
+
+    <form method="post">
+        {% csrf_token %}
+        <h1> Update Your Task Here:</h1>
+        <label class="head">Add Title</label>
+        <input type="text" name="new_title" value="{{ changed_task.title }}">
+
+        <label class="head">Add Description</label>
+        <textarea name="new_description" placeholder="Update Your Task"> {{ changed_task.description }} </textarea>
+        <br>
+        <br>
+        <br>
+        <br>
+        {#    <div>#}
+
+            <label class="checkbox-container">Completed
+            <input class="custom-checkbox" type="checkbox" name="completed" checked/></label>
+
+        {#</div>#}
+
+        <button class="add_task" type="submit">Submit Task</button>
+
+    </form>
+    {#{% for item in changed_task %}#}
+    {#   <h1> {{ forloop.counter }}.  {{ item.title }} </h1>#}
+    {#    <p>{{ item.description }}</p>#}
+
+
+    {#<h1>Babrak</h1>#}
+
+    {#{% endfor %}#}
+</div>
+</body>
+</html>
